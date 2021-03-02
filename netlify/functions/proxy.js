@@ -6,10 +6,12 @@ const API_ENDPOINT =
 exports.handler = async (event, context) => {
   let response;
 
-  console.log(event);
+  let { postcode } = event.queryStringParameters;
+
+  console.log(`${API_ENDPOINT}?postcode=${postcode}`);
 
   try {
-    response = await fetch(API_ENDPOINT, {
+    response = await fetch(`${API_ENDPOINT}?postcode=${postcode}`, {
       headers: {
         Authorization: `Bearer ${process.env.TOKEN}`,
       },
@@ -26,7 +28,7 @@ exports.handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      data: response,
+      data: await response.json(),
     }),
   };
 };

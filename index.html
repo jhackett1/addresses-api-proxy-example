@@ -1,6 +1,6 @@
 <form>
     <label>Postcode to search for</label>
-    <input name="postcode"/>
+    <input name="postcode" value="E8 1HH"/>
 
     <button>Search</button>
 </form>
@@ -15,9 +15,9 @@ document.querySelector("form").addEventListener("submit", (e) => {
 });
 
 const processSearch = async (query) => {
-  const res = await fetch(`/proxy?postcode=${query}`);
+  const res = await fetch(`/.netlify/functions/proxy?postcode=${query}`);
   const data = await res.json();
-  document.querySelector("code").innerHTML = data;
+  document.querySelector("code").innerHTML = JSON.stringify(data);
 };
 
 </script>
