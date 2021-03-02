@@ -5,10 +5,7 @@ const API_ENDPOINT =
 
 exports.handler = async (event, context) => {
   let response;
-
   let { postcode } = event.queryStringParameters;
-
-  console.log(`${API_ENDPOINT}?postcode=${postcode}`);
 
   try {
     response = await fetch(`${API_ENDPOINT}?postcode=${postcode}`, {
